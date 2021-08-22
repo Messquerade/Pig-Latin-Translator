@@ -2,10 +2,8 @@ function pigLatin(text) {
   if (text.trim().length === 0) {
     return "";
   };
-
-
 const wordArray = text.toLowerCase().split(" ");
-let translatedString = "";
+let translatedArray = [];
 
 wordArray.forEach(function(element) {
   let firstLetter = element.charAt(0);
@@ -16,13 +14,19 @@ wordArray.forEach(function(element) {
   } else {
     element = element.slice(1) + firstLetter + "ay";
   }
-  translatedString = translatedString + element + " ";
+  translatedArray.push(element);
 });
-return translatedString.trim();
+return translatedArray.join(" ");
 };
 
-// pigLatin("quick dogs get apples");
-// "uickqay ogsday etgay pplesway"
+$(document).ready(function() {
+  $("#form").submit(function(event) {
+  event.preventDefault();
+  let passage = $("#passage").val();
+  $("#result").text(pigLatin(passage));
+  });
+});
+
 
 
 // if (element.includes(".")) {
